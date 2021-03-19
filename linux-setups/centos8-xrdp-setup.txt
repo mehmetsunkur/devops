@@ -1,0 +1,26 @@
+sudo systemctl stop firewalld;
+sudo systemctl disable firewalld;
+sudo systemctl enable --now cockpit.socket;
+sudo dnf install -y openssh-server;
+sudo systemctl start sshd;
+sudo systemctl enable sshd;
+sudo dnf groupinstall "Server with GUI"
+#For Oracle Linux 8 onlysudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+
+sudo dnf install -y epel-release
+sudo dnf install -y xrdp;
+sudo systemctl enable xrdp --now;
+sudo systemctl status xrdp
+sudo dnf install -y xorgxrdp;
+sudo systemctl enable xrdp-sesman --now;
+sudo systemctl status xrdp-sesman;
+#enable xorg
+sudo vi /etc/xrdp/xrdp.ini
+
+#create Xwrapper.config sudo vi /etc/X11/Xwrapper.config;
+#add the below lineallowed_users=anybody
+
+sudo systemctl stop xrdp-sesman;
+sudo systemctl stop xrdp;
+sudo systemctl start xrdp;
+sudo systemctl start xrdp-sesman;
