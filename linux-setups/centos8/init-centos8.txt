@@ -1,0 +1,16 @@
+# this is to initial setup for centos8 con
+dnf upgrade -y;
+dnf install -y epel-release wget tar gzip git;
+dnf makecache;
+dnf install -y ansible;
+git clone https://github.com/mehmetsunkur/devops.git;
+mkdir -p devops/build;
+wget --no-cookies https://corretto.aws/downloads/latest/amazon-corretto-8-x64-linux-jdk.tar.gz -O devops/build/java.tar.gz;
+tar xvfz devops/build/java.tar.gz -C devops/build;
+mv devops/build/amazon-corretto-8* devops/build/amazon-corretto-8;
+mkdir /root/.ssh;
+echo ' put you ssh pub key here - starts with ssh-rsa
+' >> ~/.ssh/authorized_keys;
+chmod 0600  ~/.ssh/authorized_keys;
+dd if=/dev/zero of=/tmp/ddout oflag=direct bs=128k count=5000;
+sudo reboot now;
