@@ -1,0 +1,4 @@
+---
+create_user: devops
+copy_local_key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa_devops.pub') }}"
+sys_packages: [ 'curl', 'sysstat', 'git', 'htop']

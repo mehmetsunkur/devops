@@ -1,0 +1,12 @@
+---
+- hosts: all
+  gather_facts: True
+  become: true
+  strategy: free
+  tasks:
+  - name: Run disk perf
+    command: dd if=/dev/zero of=/tmp/ddout oflag=direct bs=128k count=2000
+    register: diskperf
+
+  - debug: msg="{{ diskperf.stdout }}"
+  - debug: msg="{{ diskperf.stderr }}"
