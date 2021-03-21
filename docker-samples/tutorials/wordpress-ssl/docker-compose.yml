@@ -1,0 +1,70 @@
+version: "3.8"
+
+networks:
+  web:
+    external: true
+  internal:
+    external: false
+
+services:
+  blog:
+    image: wordpress
+    environment:
+      WORDPRESS_DB_HOST: blog-mysql
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD:  examplepass
+      WORDPRESS_DB_NAME: exampledb
+    labels:
+      - traefik.http.routers.blog.rule=Host(`blog.example.com`)
+      - traefik.http.routers.blog.tls=true
+      - traefik.http.routers.blog.tls.certresolver=lets-encrypt
+      - traefik.port=80
+    networks:
+      - internal
+      - web
+    depends_on:
+      - blog-mysql
+
+  blog-mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    networks:
+      - internal
+    labels:
+      - traefik.enable=false
+
+  adminer:
+    image: adminer
+    labels:
+    labels:
+      - traefik.http.routers.adminer.rule=Host(`db-admin.example.com`)
+      - traefik.http.routers.adminer.tls=true
+      - traefik.http.routers.adminer.tls.certresolver=lets-encrypt
+      - traefik.port=8080
+    networks:
+      - internal
+      - web
+    depends_on:
+      - blog-mysql
+
+  traefik:
+    container_name: blog-traefik
+    image: traefik
+    restart: always
+    ports:
+      - "80:80" # <== http
+      - "8080:8080" # <== :8080 is where the dashboard runs on
+      - "443:443" # <== https
+    volumes:
+      - ./acme.json:/acme.json # <== Volume for certs (TLS)
+      - /var/run/docker.sock:/var/run/docker.sock # <== Volume for docker admin
+      - ./traefik.toml:/traefik.toml 
+      - ./traefik_dynamic.toml:/traefik_dynamic.toml 
+    networks:
+      - internal
+      - web
+      
