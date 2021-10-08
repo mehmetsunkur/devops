@@ -11,6 +11,7 @@ RUN npm install --global yarn
 RUN yarn global add ganache-cli
 RUN python3 -m pip install --user pipx
 RUN python3 -m pipx ensurepath
+RUN chmod -R 757 /root/
 ENV PATH="/root/.local/bin:${PATH}"
 RUN pipx install eth-brownie && pipx upgrade eth-brownie
 RUN brownie --version
