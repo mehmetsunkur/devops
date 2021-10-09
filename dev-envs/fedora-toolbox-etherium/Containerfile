@@ -14,4 +14,8 @@ RUN python3 -m pipx ensurepath
 RUN chmod -R 757 /root/
 ENV PATH="/root/.local/bin:${PATH}"
 RUN pipx install eth-brownie && pipx upgrade eth-brownie
+#python formatting provider
+RUN pip install black 
+# Python wrapper for solidity compiler 
+RUN pip install py-solc-x
 RUN brownie --version
