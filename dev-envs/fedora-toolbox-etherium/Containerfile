@@ -14,8 +14,8 @@ RUN python3 -m pipx ensurepath
 RUN chmod -R 757 /root/
 ENV PATH="/root/.local/bin:${PATH}"
 RUN pipx install eth-brownie && pipx upgrade eth-brownie
-#python formatting provider
-RUN pip install black 
-# Python wrapper for solidity compiler 
-RUN pip install py-solc-x
+#python requirements 
+RUN pip install --user black py-solc-x web3 python-dotenv
 RUN brownie --version
+RUN wget -q https://github.com/trufflesuite/ganache-ui/releases/download/v2.5.4/ganache-2.5.4-linux-x86_64.AppImage
+RUN chmod +x ganache-2.5.4-linux-x86_64.AppImage && mv ganache-2.5.4-linux-x86_64.AppImage /root/.local/bin/ganache
