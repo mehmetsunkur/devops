@@ -1,0 +1,12 @@
+FROM registry.fedoraproject.org/fedora-toolbox:34
+
+RUN dnf update -y
+RUN dnf groupinstall -y basic-desktop-environment
+RUN dnf install -y fedora-workstation-repositories
+RUN dnf config-manager --set-enabled google-chrome
+RUN dnf install -y google-chrome-stable
+RUN dnf install -y bash curl file git unzip which xz zip mesa-libGLU clang cmake ninja-build java-11-openjdk-devel.x86_64
+RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc
+RUN sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+RUN chmod -R o+w /root/
+RUN dnf install -y net-tools code;
