@@ -1,12 +1,14 @@
 FROM registry.fedoraproject.org/fedora-toolbox:34
 
-RUN dnf update -y
-RUN dnf groupinstall -y basic-desktop-environment
-RUN dnf install -y fedora-workstation-repositories
-RUN dnf config-manager --set-enabled google-chrome
-RUN dnf install -y google-chrome-stable
-RUN dnf install -y bash curl file git unzip which xz zip mesa-libGLU clang cmake ninja-build java-11-openjdk-devel.x86_64
-RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc
-RUN sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-RUN chmod -R o+w /root/
-RUN dnf install -y net-tools code;
+RUN dnf update -y \
+    && dnf groupinstall -y basic-desktop-environment \
+    && dnf install -y fedora-workstation-repositories \
+    && dnf config-manager --set-enabled google-chrome \
+    && dnf install -y google-chrome-stable \
+    && dnf install -y bash curl file git unzip which xz zip mesa-libGLU clang cmake ninja-build java-11-openjdk-devel.x86_64 \
+    && rpm --import https://packages.microsoft.com/keys/microsoft.asc \
+    && sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo' \
+    && chmod -R o+w /root/ \
+    && dnf install -y net-tools code;
+ENV SDK_HOME=/sdk
+RUN mkdir -p $SDK_HOME/bin && echo "# init script for .bashrc " > $SDK_HOME/bin/init.sh && chmod +x $SDK_HOME/bin/init.sh && chown -R 1000:1000 $SDK_HOME/

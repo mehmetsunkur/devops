@@ -1,0 +1,11 @@
+
+FROM localhost/docker-toolbox
+
+ENV IDEA_HOME=$SDK_HOME/idea
+
+RUN mkdir -p $IDEA_HOME \
+    && curl -o idea.tar.gz "https://download-cdn.jetbrains.com/idea/ideaIC-2021.2.3.tar.gz"  \
+    && tar xvzf idea.tar.gz -C $IDEA_HOME --strip-components=1 \
+    && rm idea.tar.gz && chown -R 1000:1000 $SDK_HOME/
+COPY ./idea.sh $SDK_HOME/bin/idea.sh
+RUN chmod +x $SDK_HOME/bin/idea.sh && chown -R 1000:1000 $SDK_HOME/bin

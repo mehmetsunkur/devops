@@ -16,3 +16,6 @@ sudo systemctl start xrdp;
 sudo systemctl start xrdp-sesman;
 sudo systemctl enable xrdp;
 sudo systemctl enable xrdp-sesman;
+
+# setup /bashrc
+cat ./bashrc.txt >> "$HOME/.bashrc"

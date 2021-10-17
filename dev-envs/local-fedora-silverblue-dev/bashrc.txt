@@ -1,0 +1,11 @@
+
+#THIS MUST BE AT THE END OF THE FILE FOR toolbox images TO WORK!!!
+export SDK_HOME="/sdk"
+[[ -s "$SDK_HOME/bin/init.sh" ]] && source "$SDK_HOME/bin/init.sh"
+
+# toolbox specific environment
+if ! [[ "$PATH" =~ "$SDK_HOME/bin" ]]
+then
+    PATH="$SDK_HOME/bin:$PATH"
+fi
+export PATH
