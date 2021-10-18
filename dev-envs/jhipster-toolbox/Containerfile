@@ -1,0 +1,6 @@
+
+FROM localhost/docker-toolbox
+
+RUN dnf module install -y nodejs:14/default
+RUN npm install -g generator-jhipster
+
