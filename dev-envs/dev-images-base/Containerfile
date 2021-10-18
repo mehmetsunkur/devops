@@ -11,4 +11,5 @@ RUN dnf update -y \
     && chmod -R o+w /root/ \
     && dnf install -y net-tools code;
 ENV SDK_HOME=/sdk
-RUN mkdir -p $SDK_HOME/bin && echo "# init script for .bashrc " > $SDK_HOME/bin/init.sh && chmod +x $SDK_HOME/bin/init.sh && chown -R 1000:1000 $SDK_HOME/
+COPY ./init.sh $SDK_HOME/bin/init.sh
+RUN mkdir -p $SDK_HOME/bin/env && chmod +x $SDK_HOME/bin/init.sh && chown -R 1000:1000 $SDK_HOME/bin

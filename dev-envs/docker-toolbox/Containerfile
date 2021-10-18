@@ -7,5 +7,4 @@ RUN dnf -y install dnf-plugins-core \
     https://download.docker.com/linux/fedora/docker-ce.repo \
     && dnf -y install docker-ce docker-ce-cli containerd.io docker-ce-rootless-extras docker-compose \
     && echo "dev:100000:65536" > /etc/subuid && echo "dev:100000:65536" > /etc/subgid
-COPY ./docker-toolbox-init.sh $SDK_HOME/bin/
-RUN echo -e "source $SDK_HOME/bin/docker-toolbox-init.sh" >> $SDK_HOME/bin/init.sh && chown -R 1000:1000 $SDK_HOME/
+COPY ./docker-toolbox-init.sh $SDK_HOME/bin/env

@@ -1,5 +1,5 @@
 
-FROM localhost/dev-images-base
+FROM localhost/docker-toolbox
 
 ENV SDK_HOME=/sdk
 ENV FLUTTER_HOME=$SDK_HOME/flutter
@@ -19,9 +19,7 @@ RUN yes "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "build-tools
     && yes "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platforms;android-$ANDROID_VERSION" \
     && yes "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" \
     && yes "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "emulator" \
-    && yes "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "system-images;android-$ANDROID_VERSION;google_apis_playstore;$ANDROID_ARCHITECTURE"
+    && yes "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "system-images;android-$ANDROID_VERSION;google_apis_playstore;$ANDROID_ARCHITECTURE" \
+    && chown -R 1000:1000 $FLUTTER_HOME && chown -R 1000:1000 $ANDROID_SDK_ROOT
 
-ENV PATH="$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/platforms:$FLUTTER_HOME/bin"
-COPY init.sh $SDK_HOME/init.sh
-RUN chmod +x $SDK_HOME/init.sh
-RUN chown -R 1000:1000 /sdk
+COPY ./flutter-toolbox-init.sh $SDK_HOME/bin/env/flutter-toolbox-init.sh
