@@ -1,0 +1,14 @@
+
+FROM localhost/docker-toolbox
+
+ENV CITRIX_HOME=$SDK_HOME/citrix
+
+#https://www.citrix.com/en-gb/downloads/citrix-receiver/linux/receiver-for-linux-latest.html
+RUN mkdir -p $CITRIX_HOME \
+    && curl -o ICAClientWeb-rhel-13.10.0.20-0.x86_64.rpm "https://downloads.citrix.com/14822/ICAClientWeb-rhel-13.10.0.20-0.x86_64.rpm?__gda__=exp=1634636218~acl=/*~hmac=e563adf6fe8eb4555d6e4538680f6ece63466a0271acb38b03c4fdbf7167bd07"  \
+    && dnf localinstall -y ICAClientWeb-rhel-13.10.0.20-0.x86_64.rpm \
+    && rm ICAClientWeb-rhel-13.10.0.20-0.x86_64.rpm && chown -R 1000:1000 $CITRIX_HOME/
+COPY ./citrix.sh $SDK_HOME/bin/citrix.sh
+RUN chmod +x $SDK_HOME/bin/citrix.sh && chown -R 1000:1000 $SDK_HOME/bin
+RUN ln -sf /usr/lib64/libidn2.so.0.3.7 /usr/lib64/libidn.so.11
+
