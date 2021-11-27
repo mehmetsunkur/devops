@@ -1,0 +1,5 @@
+FROM localhost/flutter-toolbox as flutter
+FROM localhost/idea-toolbox as idea
+FROM localhost/docker-toolbox
+COPY --from=flutter $SDK_HOME/ $SDK_HOME/
+COPY --from=idea $SDK_HOME/ $SDK_HOME/
