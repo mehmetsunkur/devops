@@ -1,10 +1,11 @@
 
 FROM localhost/dev-images-base
+ARG HOMEUSER
 
 RUN dnf -y install dnf-plugins-core \
     &&  dnf config-manager \
     --add-repo \
     https://download.docker.com/linux/fedora/docker-ce.repo \
     && dnf -y install docker-ce docker-ce-cli containerd.io docker-ce-rootless-extras docker-compose \
-    && echo "msunkur:100000:65536" > /etc/subuid && echo "msunkur:100000:65536" > /etc/subgid
+    && echo  "$HOMEUSER:100000:65536" > /etc/subuid && echo "$HOMEUSER:100000:65536" > /etc/subgid
 COPY ./docker-toolbox-init.sh $SDK_HOME/bin/env
