@@ -8,7 +8,7 @@ sudo systemctl start sshd;
 sudo systemctl enable sshd;
 
 # setup rdp server
-sudo cp xrdp.ini /etc/xrdp/xrdp.ini
+sudo cp xrdp.ini /etc/xrdp/xrdp.ini;
 sudo cp Xwrapper.config /etc/X11/Xwrapper.config
 sudo systemctl stop xrdp-sesman;
 sudo systemctl stop xrdp;
