@@ -3,5 +3,5 @@ flatpak install app/com.visualstudio.code/x86_64/stable;
 
 # install tools at once
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-sudo rpm-ostree install xrdp xorgxrdp google-chrome-stable_current_x86_64.rpm virt-manager libvirt virt-viewer spice-server;
+sudo rpm-ostree install xrdp xorgxrdp google-chrome-stable_current_x86_64.rpm virt-manager libvirt virt-viewer spice-server tlp;
 
