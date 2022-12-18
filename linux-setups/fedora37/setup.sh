@@ -10,7 +10,7 @@ flatpak install -y app/com.visualstudio.code/x86_64/stable;
 sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/35/winehq.repo;
 
 # Install Chrome, XRDP, wine
-sudo dnf install -y xrdp xorgxrdp winehq-stable https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm;
+sudo dnf install -y xrdp xorgxrdp git winehq-stable https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm;
 
 # Install game platforms
 flatpak install -y net.lutris.Lutris;
