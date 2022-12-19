@@ -15,3 +15,8 @@ sudo dnf install -y xrdp xorgxrdp git winehq-stable https://dl.google.com/linux/
 # Install game platforms
 flatpak install -y net.lutris.Lutris;
 flatpak install -y flathub com.heroicgameslauncher.hgl;
+
+sudo dnf config-manager \
+    --add-repo \
+    https://download.docker.com/linux/fedora/docker-ce.repo;
+sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin;
