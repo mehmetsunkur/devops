@@ -16,7 +16,13 @@ sudo dnf install -y xrdp xorgxrdp git winehq-stable https://dl.google.com/linux/
 flatpak install -y net.lutris.Lutris;
 flatpak install -y flathub com.heroicgameslauncher.hgl;
 
+# Docker
 sudo dnf config-manager \
     --add-repo \
     https://download.docker.com/linux/fedora/docker-ce.repo;
 sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin;
+sudo systemctl enable docker;
+sudo systemctl start docker;
+sudo groupadd docker;
+sudo usermod -aG docker $USER;
+docker run hello-world;
