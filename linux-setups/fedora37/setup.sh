@@ -4,6 +4,8 @@
 # Install flatpak repo and VS code
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo;
 flatpak install -y app/com.visualstudio.code/x86_64/stable;
+flatpak install -y flathub com.jetbrains.IntelliJ-IDEA-Community;
+flatpak install -y flathub com.jetbrains.PyCharm-Community;
 
 
 # Add winehq repo for the latest version of wine
