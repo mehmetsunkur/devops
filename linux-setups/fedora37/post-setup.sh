@@ -23,6 +23,16 @@ sudo systemctl stop xrdp;
 sudo systemctl start xrdp;
 sudo systemctl start xrdp-sesman;
 
+#samba
+sudo dnf install -y samba;
+sudo systemctl enable smb;
+sudo firewall-cmd --permanent --zone=FedoraWorkstation --add-service=samba;
+sudo firewall-cmd --add-service samba;
+sudo firewall-cmd --reload;
+sudo smbpasswd -a sambauser;
+sudo setsebool -P samba_enable_home_dirs 1;
+
+
 
 
 # incase multipe drives, change boot label to set it unique for nvme drive
