@@ -1,0 +1,43 @@
+# https://github.com/FilBot3/fedora-silverblue-gpu-passthrough
+
+# Run this grep command to find if your CPU has virtualization enabled.
+sudo grep --color --regexp vmx --regexp svm /proc/cpuinfo
+
+# You may need to remove some Nvidia specific options if you had once used an Nvidia GPU.
+sudo rpm-ostree kargs \
+  --delete-if-present=rd.driver.blacklist=nouveau \
+  --delete-if-present=modprobe.blacklist=nouveau \
+  --delete-if-present=nvidia-drm.modeset=1 \
+  --reboot
+  
+  @ Ensure CPU has IOMMU enabled
+  # Run the following command.
+  dmesg | grep -i -e DMAR -e IOMMU
+  
+  # If this doesn't show, make sure to set:
+  sudo rpm-ostree kargs \
+  --append-if-missing="intel_iommu=on" \
+  --append-if-missing="iommu=pt" \
+  --append-if-missing="rd.driver.pre=vfio_pci" \
+  --reboot
+  
+  # Check PCI Bus Groups
+  sh ./Check-PCI-Bus-Groups.sh
+  
+  # Now we'll setup the Kernel Args for disabling the PCI Buses for the GPU.
+  sudo rpm-ostree kargs \
+  --append-if-missing="vfio-pci.ids=10de:13c2,10de:0fbb" \
+  --reboot
+  
+# Then perform a dracut to make sure the initramfs has the Kernel module loaded.
+sudo rpm-ostree initramfs \
+  --enable \
+  --arg="--add-drivers" \
+  --arg="vfio-pci" \
+  --reboot
+
+# You should now see when you perform
+sudo lspci -nnv
+
+# Install bridge-utils
+sudo rpm-ostree install bridge-utils --reboot
