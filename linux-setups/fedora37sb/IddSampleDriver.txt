@@ -1,2 +1,12 @@
 # required to make windows vm nvidia driver run when VMs Video Model set to none. This unblocks physical hdmi connectio/dongle.
 https://github.com/ge9/IddSampleDriver
+
+# verify "iddSmapleDriver Device" is added to "Display Adapters" in Device Manager
+
+# make windows auto login
+# run regedit with admin rights and locate this path
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon
+# add string values as below with your windows username and password
+AutoAdminLogon=1
+DefaultUserName=win-user
+DefaultPassword=password
