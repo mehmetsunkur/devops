@@ -1,0 +1,14 @@
+# https://blandmanstudios.medium.com/tutorial-the-ultimate-linux-laptop-for-pc-gamers-feat-kvm-and-vfio-dee521850385
+sudo rpm-ostree install  cmake gcc gcc-c++ libglvnd-devel fontconfig-devel spice-protocol make nettle-devel \
+                 binutils-devel libXi-devel libXinerama-devel libXcursor-devel \
+                 libXpresent-devel libxkbcommon-x11-devel wayland-devel wayland-protocols-devel \
+                 libXScrnSaver-devel libXrandr-devel dejavu-sans-mono-fonts \
+                 pipewire-devel libsamplerate-devel pulseaudio-libs-devel libsamplerate-devel
+                 
+# build looking-glass clieny on silverblue
+git clone --recursive https://github.com/gnif/LookingGlass.git
+cd LookingGlass/
+mkdir client/build
+cd client/build
+cmake ../
+make
