@@ -1,4 +1,8 @@
+# make sure you installed iddSampleDriver earlier
 # https://blandmanstudios.medium.com/tutorial-the-ultimate-linux-laptop-for-pc-gamers-feat-kvm-and-vfio-dee521850385
+
+# install looking glass windows host binary into WindowsVm from https://looking-glass.io/downloads
+# to install looking glass client
 sudo rpm-ostree install  cmake gcc gcc-c++ libglvnd-devel fontconfig-devel spice-protocol make nettle-devel \
                  binutils-devel libXi-devel libXinerama-devel libXcursor-devel \
                  libXpresent-devel libxkbcommon-x11-devel wayland-devel wayland-protocols-devel \
@@ -12,3 +16,44 @@ mkdir client/build
 cd client/build
 cmake ../
 make
+sudo make install
+
+sudo vi /etc/tmpfiles.d/10-looking-glass.conf
+# paste
+
+# Type Path               Mode UID  GID Age Argument
+f /dev/shm/looking-glass 0660 msunkur qemu -
+
+# run
+sudo semanage fcontext -a -t svirt_tmpfs_t /dev/shm/looking-glass
+
+# /dev/shm/looking-glass should be created after VM with shared mem config. to check
+ls -alZ /dev/shm/looking-glass
+
+# run to see mouse and keyboard id/path id for mouse, path for keyboard
+ls /dev/input/by-id/
+ls /dev/input/by-path/
+
+# add to vm domain xml inside devices tag
+<input type="evdev">
+    <source dev="/dev/input/by-id/usb-Logitech_USB_Optical_Mouse-event-mouse"/>
+</input>
+<input type="evdev">
+    <source dev="/dev/input/by-path/pci-0000:00:14.0-usb-0:4:1.0-event-kbd" grab="all" grabToggle="ctrl-ctrl" repeat="on"/>
+</input>
+<shmem name='looking-glass'>
+  <model type='ivshmem-plain'/>
+  <size unit='M'>128</size>
+</shmem>
+
+# run the VM
+connect vm via rdp make sure 
+# set Video Device model to None
+
+# run looking glass client
+looking-glass-client -s -m 97
+# if it fails with Permission denied error run:
+sudo chown msunkur:qemu /dev/shm/looking-glass
+
+
+
