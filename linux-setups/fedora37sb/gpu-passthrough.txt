@@ -26,7 +26,7 @@ sudo rpm-ostree kargs \
   
   # Now we'll setup the Kernel Args for disabling the PCI Buses for the GPU.
   sudo rpm-ostree kargs \
-  --append-if-missing="vfio-pci.ids=10de:13c2,10de:0fbb" \
+  --append-if-missing="vfio-pci.ids=10de:2520,10de:228e" \
   --reboot
   
 # Then perform a dracut to make sure the initramfs has the Kernel module loaded.

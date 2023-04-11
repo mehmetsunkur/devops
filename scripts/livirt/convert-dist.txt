@@ -1,0 +1,12 @@
+sudo qemu-img convert -p -f vhdx -O qcow2 /var/mnt/extdata/winc-virt-disk/2/winc-virt-diskwinc-disk2vhd-0.VHDX /var/mnt/extdata/winc-virt-disk/2/winc-virt-diskwinc-disk2vhd.qcow2
+
+sudo qemu-img convert -p -f vhdx -O qcow2 /var/mnt/extdata/winc-virt-disk/3/winc.VHDX /var/mnt/data/virt-images/winc.qcow2
+sudo qemu-img convert -p -f vhdx -O qcow2 /var/mnt/extdata/winc-virt-disk/4/winc-no-bootefi.VHDX /var/mnt/data/virt-images/winc-no-bootefi.qcow2
+
+sudo qemu-img convert -p -f vhdx -O qcow2 /var/mnt/extdata/winc-virt-disk/4/winc-bootefi-0.VHDX /var/mnt/data/virt-images/winc-bootefi-0.qcow2
+sudo qemu-img convert -p -f vhdx -O qcow2 /var/mnt/extdata/winc-virt-disk/4/winc-bootefi-1.VHDX /var/mnt/data/virt-images/winc-bootefi-1.qcow2
+sudo qemu-img convert -p -f vhdx -O qcow2 /var/mnt/extdata/winc-virt-disk/4/winc-no-dell-support-0.VHDX /var/mnt/data/virt-images/winc-no-dell-support-0.qcow2
+sudo qemu-img convert -p -f vhdx -O qcow2 /var/mnt/extdata/winc-virt-disk/4/winc-no-dell-support-1.VHDX /var/mnt/data/virt-images/winc-no-dell-support-1.qcow2
+
+/run/media/msunkur/fedext/home/msunkur/tmp/nvme1n1p3.img /var/mnt/data/virt-images/nvme1n1p3.qcow2
+qemu-img convert -O qcow2 /run/media/msunkur/fedext/home/msunkur/tmp/nvme1n1p3.img /var/mnt/data/virt-images/nvme1n1p3.qcow2
