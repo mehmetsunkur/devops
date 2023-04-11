@@ -1,0 +1,2 @@
+
+RUN chown -v -R $HOSTUSER_ID:$HOSTUSER_ID $TOOLBOX_KIT/ && chmod -v -R +x $TOOLBOX_KIT/bin/

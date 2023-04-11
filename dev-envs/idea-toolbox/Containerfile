@@ -1,3 +1,4 @@
+## toolboxkit/Container-Begin will be added above
 
 FROM localhost/docker-toolbox
 
@@ -6,6 +7,8 @@ ENV IDEA_HOME=$SDK_HOME/idea
 RUN mkdir -p $IDEA_HOME \
     && curl -o idea.tar.gz "https://download-cdn.jetbrains.com/idea/ideaIC-2023.1.tar.gz"  \
     && tar xvzf idea.tar.gz -C $IDEA_HOME --strip-components=1 \
-    && rm idea.tar.gz && chown -R 1000:1000 $SDK_HOME/
-COPY ./idea.sh $SDK_HOME/bin/idea.sh
-RUN chmod +x $SDK_HOME/bin/idea.sh && chown -R 1000:1000 $SDK_HOME/bin
+    && rm idea.tar.gz 
+
+COPY --chown=$HOSTUSER_ID:$HOSTUSER_ID idea-env.sh $TOOLBOX_KIT/bin/env/
+
+## toolboxkit/Container-End will be added below
