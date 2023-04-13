@@ -1,0 +1,5 @@
+
+
+
+/dev/disk/by-id/nvme-SAMSUNG_MZVLB2T0HMLB-00000_S4C2NB0N600356
+sudo dd if=/dev/disk/by-id/nvme-SAMSUNG_MZVLB2T0HMLB-00000_S4C2NY0N202137 of=/dev/disk/by-id/nvme-SAMSUNG_MZVLB2T0HMLB-00000_S4C2NB0N600356 bs=1k conv=noerror
