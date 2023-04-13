@@ -1,5 +1,7 @@
 #FROM localhost/flutter-toolbox as flutter
+FROM localhost/docker-toolbox as docker-toolbox
 FROM localhost/idea-toolbox as idea
-FROM localhost/docker-toolbox
-#COPY --from=flutter $SDK_HOME/ $SDK_HOME/
-COPY --from=idea $SDK_HOME/ $SDK_HOME/
+FROM localhost/flutter-toolbox as flutter-toolbox
+COPY --from=docker-toolbox /toolbox/ /toolbox/
+COPY --from=idea /toolbox/ /toolbox/
+COPY --from=flutter-toolbox /toolbox/ /toolbox/

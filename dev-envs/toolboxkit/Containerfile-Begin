@@ -1,9 +1,1 @@
-FROM registry.fedoraproject.org/fedora-toolbox:37 as BASE_IMAGE
-
-ARG HOSTUSER
-ARG HOSTUSER_ID
-ARG TOOLBOX_NAME
-ARG TOOLBOX_HOME_ROOT_DIR_NAME=dev
-ARG TOOLBOX_HOME_DIR_NAME=toolbox
-ENV TOOLBOX_KIT=/toolbox
-ENV SDK_HOME=$TOOLBOX_KIT/sdk
+# Place holder fot the future use cases

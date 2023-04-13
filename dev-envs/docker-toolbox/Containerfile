@@ -6,8 +6,8 @@ RUN dnf -y install dnf-plugins-core \
     &&  dnf config-manager \
     --add-repo \
     https://download.docker.com/linux/fedora/docker-ce.repo \
-    && dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    && dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && dnf -y clean all;
 
-COPY --chown=$HOSTUSER_ID:$HOSTUSER_ID docker-env.sh $TOOLBOX_KIT/bin/env/
+COPY docker-env.sh $TOOLBOX_KIT/bin/env/
 
 ## toolboxkit/Container-Finish will be added below

@@ -3,7 +3,7 @@ NC='\033[0m' # No Color
 
 if [ -f "/run/.containerenv" ]; then
  echo -e "${RED}!!!!!${NC}"
- echo "don't run this inside a toolboz!" ; exit 1;
+ echo "don't run this inside a toolbox!" ; exit 1;
 fi
 
 IMAGE_NAME=$(cat image-name.txt)
@@ -39,7 +39,7 @@ TOOLBOX_HOME_ROOT_DIR_NAME=dev
 TOOLBOX_HOME_DIR_NAME=toolbox
 TOOLBOX_HOME=/var/home/${HOSTUSER}/${TOOLBOX_HOME_ROOT_DIR_NAME}/${TOOLBOX_HOME_DIR_NAME}/${TOOLBOX_NAME}
 
-podman build build -t $IMAGE_NAME --build-arg HOSTUSER="$HOSTUSER" --build-arg HOSTUSER_ID="$HOSTUSER_ID" --build-arg TOOLBOX_NAME="$TOOLBOX_NAME" --env HOME="$TOOLBOX_HOME"
+podman build  ./build/ -t $IMAGE_NAME --env=HOSTUSER="$HOSTUSER" --env=HOSTUSER_ID="$HOSTUSER_ID" --env=TOOLBOX_NAME="$TOOLBOX_NAME" --env=HOME="$TOOLBOX_HOME"
 
 rm -rf ./build/
 

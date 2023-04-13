@@ -1,25 +1,8 @@
+FROM localhost/dev-images-base
 
-FROM localhost/docker-toolbox
-
-ENV SDK_HOME=/sdk
 ENV FLUTTER_HOME=$SDK_HOME/flutter
-ENV ANDROID_BUILD_TOOLS_VERSION="29.0.3"
-ENV ANDROID_VERSION="29"
-ENV ANDROID_ARCHITECTURE="x86_64"
-ENV ANDROID_SDK_ROOT=$SDK_HOME/android-sdk
-ENV ANDROID_TOOLS_URL="https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip"
-RUN mkdir -p $FLUTTER_HOME && git clone https://github.com/flutter/flutter.git -b stable $FLUTTER_HOME
-RUN curl -o android_tools.zip $ANDROID_TOOLS_URL \
-    && mkdir -p "$ANDROID_SDK_ROOT/tmp" \
-    && unzip -qq -d "$ANDROID_SDK_ROOT/tmp" android_tools.zip \
-    && rm android_tools.zip \
-    && mkdir -p $ANDROID_SDK_ROOT/cmdline-tools/latest \
-    && mv $ANDROID_SDK_ROOT/tmp/cmdline-tools/* $ANDROID_SDK_ROOT/cmdline-tools/latest/
-RUN yes "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION" \
-    && yes "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platforms;android-$ANDROID_VERSION" \
-    && yes "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" \
-    && yes "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "emulator" \
-    && yes "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "system-images;android-$ANDROID_VERSION;google_apis_playstore;$ANDROID_ARCHITECTURE" \
-    && chown -R 1000:1000 $FLUTTER_HOME && chown -R 1000:1000 $ANDROID_SDK_ROOT
 
-COPY ./flutter-toolbox-init.sh $SDK_HOME/bin/env/flutter-toolbox-init.sh
+RUN dnf install -y gtk3-devel zlib.i686 ncurses-libs.i686 bzip2-libs.i686 kernel-devel kernel-headers
+RUN mkdir -p $FLUTTER_HOME && git clone https://github.com/flutter/flutter.git -b stable $FLUTTER_HOME
+COPY ./flutter-toolbox-env.sh $SDK_HOME/bin/env/
+COPY ./toolbox-boot.sh $TOOLBOX_KIT/bin

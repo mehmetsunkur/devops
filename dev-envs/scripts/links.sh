@@ -8,5 +8,5 @@ rm create-container.sh
 ln -s ../scripts/create-container.sh .
 rm kill-container.sh
 ln -s ../scripts/kill-container.sh .
-rm rebuild-run.sh
-ln -s ../scripts/rebuild-run.sh .
+rm refresh-container.sh
+ln -s ../scripts/refresh-container.sh .
