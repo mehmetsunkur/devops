@@ -4,5 +4,5 @@ ENV FLUTTER_HOME=$SDK_HOME/flutter
 
 RUN dnf install -y gtk3-devel zlib.i686 ncurses-libs.i686 bzip2-libs.i686 kernel-devel kernel-headers
 RUN mkdir -p $FLUTTER_HOME && git clone https://github.com/flutter/flutter.git -b stable $FLUTTER_HOME
-COPY ./flutter-toolbox-env.sh $SDK_HOME/bin/env/
+COPY ./flutter-toolbox-env.sh $TOOLBOX_KIT/bin/env/
 COPY ./toolbox-boot.sh $TOOLBOX_KIT/bin
