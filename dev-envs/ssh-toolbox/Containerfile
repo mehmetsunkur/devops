@@ -1,0 +1,7 @@
+## toolboxkit/Container-Begin will be added above
+
+FROM localhost/toolbox-base
+
+RUN dnf -y install openssh-server
+
+## toolboxkit/Container-Finish will be added below
