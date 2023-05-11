@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora-toolbox:37 as BASE_IMAGE
+FROM registry.fedoraproject.org/fedora-toolbox:38 as BASE_IMAGE
 
 ENV TOOLBOX_KIT=/toolbox
 ENV SDK_HOME=$TOOLBOX_KIT/sdk
