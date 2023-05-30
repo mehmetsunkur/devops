@@ -5,7 +5,7 @@ RUN dnf update -y \
     && dnf install -y fedora-workstation-repositories \
     && dnf config-manager --set-enabled google-chrome \
     && dnf install -y google-chrome-stable \
-    && dnf install -y bash curl file git unzip which xz zip mesa-libGLU clang cmake ninja-build java-17-openjdk-devel.x86_64 pipx conda \
+    && dnf install -y bash curl file git unzip which xz zip mesa-libGLU clang cmake ninja-build java-11-openjdk-devel java-17-openjdk-devel.x86_64 pipx conda \
     && rpm --import https://packages.microsoft.com/keys/microsoft.asc \
     && sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo' \
     && chmod -R o+w /root/ \
