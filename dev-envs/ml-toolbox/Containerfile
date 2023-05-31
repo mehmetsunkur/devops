@@ -1,0 +1,9 @@
+## toolboxkit/Container-Begin will be added above
+
+FROM localhost/dev-images-base
+
+RUN dnf -y install python3-pip python3-dev python-virtualenv
+COPY ./toolbox-boot.sh $TOOLBOX_KIT/bin/ 
+
+
+## toolboxkit/Container-End will be added below

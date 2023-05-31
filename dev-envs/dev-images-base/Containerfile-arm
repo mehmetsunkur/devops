@@ -1,0 +1,11 @@
+FROM localhost/docker-toolbox
+
+RUN dnf update -y \
+    && dnf groupinstall -y basic-desktop-environment \
+    && dnf install -y fedora-workstation-repositories \
+    && dnf install -y bash curl file git unzip which xz zip mesa-libGLU clang cmake ninja-build java-11-openjdk-devel java-17-openjdk-devel pipx conda \
+    && dnf install -y net-tools ;
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && sudo ./aws/install && rm awscliv2.zip
+ENV SDK_HOME=/sdk
+COPY ./init.sh $SDK_HOME/bin/init.sh
+RUN mkdir -p $SDK_HOME/bin/env && chmod +x $SDK_HOME/bin/init.sh && chown -R 1000:1000 $SDK_HOME/bin
