@@ -1,0 +1,3 @@
+# to acces this from remote 
+# redirect local portal 3822(for ssh) and 3889(for rdp) to remote rdp and ssh ports
+ssh -v -L 3889:localhost:3889 -L 3822:localhost:3822 -i /home/osuser/.ssh/ssh-key.key *.mywire.org

@@ -1,3 +1,11 @@
+# service fails due to selinux denies permissions
+# check denied permissions by
+# sudo tail -f /var/log/audit/audit.log | grep denied
+
+# export denied permissions and allow them
+# sudo cat /var/log/audit/audit.log | grep denied > sshfixes.log
+# audit2allow -i sshfixes.log -M sshfixes
+
 [Unit]
 Description=SSH Tunnel
 Requires=network-online.target
@@ -12,7 +20,6 @@ Restart=always
 RestartSec=1
 ExecStart=/usr/bin/ssh \
     -v \
-    -p 5693 \
     -NT \
     -o StrictHostKeyChecking=no \
     -o ServerAliveInterval=60 \
