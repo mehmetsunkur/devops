@@ -6,6 +6,10 @@
 # sudo cat /var/log/audit/audit.log | grep denied > sshfixes.log
 # audit2allow -i sshfixes.log -M sshfixes
 
+# Fedora 38+ prevent sleep-incative
+# sudo -u gdm dbus-run-session gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 0
+
+
 [Unit]
 Description=SSH Tunnel
 Requires=network-online.target
