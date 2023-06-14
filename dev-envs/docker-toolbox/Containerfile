@@ -6,8 +6,17 @@ RUN dnf -y install dnf-plugins-core \
     &&  dnf config-manager \
     --add-repo \
     https://download.docker.com/linux/fedora/docker-ce.repo \
-    && dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && dnf -y clean all;
+    && dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose && dnf -y clean all;
 
 COPY docker-env.sh $TOOLBOX_KIT/bin/env/
 
+# don't forget 
+# to add {"hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]} to /etc/docker/daemon.json
+# and 
+# [Service]
+# ExecStart=
+# ExecStart=/usr/bin/dockerd
+# to /etc/systemd/system/docker.service.d/override.conf
+# but fist mkdir /etc/systemd/system/docker.service.d
 ## toolboxkit/Container-Finish will be added below
+Jun 14 22:41:35 fedora dockerd[117779]: unable to configure the Docker daemon with file /etc/docker/daemon.json: the following directives are specified both as a flag and in the configuration file: hosts: (f>
