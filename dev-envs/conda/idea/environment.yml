@@ -1,0 +1,11 @@
+name: idea1
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - codecov
+  - git-remote-codecommit
+variables:
+  HOME: /Users/msunkur/dev/toolbox/idea-toolbox-imigo
+  VAR2: value
