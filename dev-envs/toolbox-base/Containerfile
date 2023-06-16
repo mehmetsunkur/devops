@@ -16,4 +16,6 @@ RUN echo $'\n' "# added by toolbox-base "$'\n' \
 "sh /toolbox/bin/toolbox-init.sh"$'\n' \
 "# added by toolbox-base end " $'\n' >> /etc/profile.d/toolbox-setenv.sh && cat /etc/profile.d/toolbox-setenv.sh
 
+ENV XDG_CONFIG_HOME=$HOME/.config
+
 ## toolboxkit/Container-End will be added below
