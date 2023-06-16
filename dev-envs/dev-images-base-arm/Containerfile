@@ -6,12 +6,12 @@ RUN dnf update -y \
     && dnf install -y bash curl file git unzip which xz zip \
     mesa-libGLU clang cmake ninja-build \
     java-11-openjdk-devel java-17-openjdk-devel \
-    maven-openjdk11 \
+    maven-openjdk11 firefox chromium\
     pipx conda net-tools
 RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc \
     && sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo' \
     && dnf install -y code
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && sudo ./aws/install && rm awscliv2.zip
-ENV SDK_HOME=/sdk
+
 COPY ./init.sh $SDK_HOME/bin/init.sh
 RUN mkdir -p $SDK_HOME/bin/env && chmod +x $SDK_HOME/bin/init.sh && chown -R 1000:1000 $SDK_HOME/bin
