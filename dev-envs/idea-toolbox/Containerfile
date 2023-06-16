@@ -3,7 +3,7 @@
 FROM localhost/dev-images-base
 
 RUN mkdir -p $SDK_HOME/idea \
-    && curl -o idea.tar.gz "https://download-cdn.jetbrains.com/idea/ideaIC-2023.1.tar.gz"  \
+    && curl -o idea.tar.gz "https://download-cdn.jetbrains.com/idea/ideaIC-2023.1.2.tar.gz"  \
     && tar xvzf idea.tar.gz -C $SDK_HOME/idea --strip-components=1 \
     && rm idea.tar.gz 
 
