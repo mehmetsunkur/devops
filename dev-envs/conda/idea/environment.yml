@@ -8,4 +8,5 @@ dependencies:
   - git-remote-codecommit
 variables:
   HOME: /Users/msunkur/dev/toolbox/idea-toolbox-imigo
-  VAR2: value
+  TOOLBOX_KIT: $HOME/toolbox
+  TOOLBOX_KIT: $TOOLBOX_KIT/sdk
