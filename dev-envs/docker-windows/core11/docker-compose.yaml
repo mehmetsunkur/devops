@@ -1,0 +1,22 @@
+version: "3"
+services:
+  windows:
+    image: dockurr/windows
+    container_name: core11-test1
+    environment:
+      # VERSION: "core11"
+      RAM_SIZE: "8G"
+      CPU_CORES: "4"
+    volumes:
+      - ~/dev/envs/dockur/isos/tiny11-core-x64-beta-1.iso:/storage/custom.iso
+      - ~/dev/envs/dockur/core11-test1:/storage
+    devices:
+      - /dev/kvm
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 30806:8006
+      - 30889:3389/tcp
+      - 30889:3389/udp
+    stop_grace_period: 2m
+    restart: on-failure

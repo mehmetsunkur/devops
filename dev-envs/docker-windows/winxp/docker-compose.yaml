@@ -1,0 +1,21 @@
+version: "3"
+services:
+  windows:
+    image: dockurr/windows
+    container_name: winxp-test1
+    environment:
+      VERSION: "winxp"
+      RAM_SIZE: "8G"
+      CPU_CORES: "4"
+    volumes:
+      - ~/dev/envs/dockur/winxp-test1:/storage
+    devices:
+      - /dev/kvm
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 30606:8006
+      - 30689:3389/tcp
+      - 30689:3389/udp
+    stop_grace_period: 2m
+    restart: on-failure

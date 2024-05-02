@@ -1,0 +1,30 @@
+version: "3"
+services:
+  windows:
+    image: dockurr/windows
+    container_name: windows10-test1
+    environment:
+      # VERSION: "winxp"
+#      DHCP: "Y"
+      # DEVICE: "/dev/nvme1n1p4"
+      RAM_SIZE: "16G"
+      CPU_CORES: "8"
+      DISK_SIZE: "256G"
+      MANUAL: "Y"
+    volumes:
+      - /home/msunkur/dev/tmp/dockur-win-v1:/storage
+      # - /home/msunkur/dev/Downloads/Win11_22H2_EnglishInternational_x64v1.iso:/storage/custom.iso
+    devices:
+      - /dev/kvm
+      # - /dev/vhost-net
+      # - /dev/nvme1n1p4
+    # device_cgroup_rules:
+    #   - 'c *:* rwm'
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 30206:8086
+      - 30289:3389/tcp
+      - 30299:3389/udp
+    stop_grace_period: 2m
+    restart: on-failure

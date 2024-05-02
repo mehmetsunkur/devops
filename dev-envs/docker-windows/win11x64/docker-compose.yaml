@@ -1,0 +1,29 @@
+version: "3"
+services:
+  windows:
+    image: dockurr/windows
+    container_name: win11x64-test1
+    environment:
+      # DHCP: "Y"
+      # DEVICE2: "/dev/nvme1n1"
+      RAM_SIZE: "16G"
+      CPU_CORES: "8"
+      # DISK_SIZE: "256G"
+      # MANUAL: "Y"
+    volumes:
+      # - ~/dev/tmp/win11x64.iso:/storage/custom.iso
+      - ~/dev/envs/dockur/win11x64-test1:/storage
+    devices:
+      - /dev/kvm
+      # - /dev/nvme1n1
+      # - /dev/vhost-net
+    # device_cgroup_rules:
+    #   - 'c *:* rwm'
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 30406:8006
+      - 30489:3389/tcp
+      - 30489:3389/udp
+    stop_grace_period: 2m
+    restart: on-failure

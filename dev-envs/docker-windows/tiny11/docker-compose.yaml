@@ -1,0 +1,21 @@
+version: "3"
+services:
+  windows:
+    image: dockurr/windows
+    container_name: tiny11-test1
+    environment:
+      VERSION: "tiny11"
+      RAM_SIZE: "8G"
+      CPU_CORES: "4"
+    volumes:
+      - ~/dev/envs/dockur/tiny11-test1:/storage
+    devices:
+      - /dev/kvm
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 30206:8006
+      - 30289:3389/tcp
+      - 30289:3389/udp
+    stop_grace_period: 2m
+    restart: on-failure

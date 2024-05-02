@@ -1,0 +1,24 @@
+version: "3"
+services:
+  windows:
+    image: dockurr/windows
+    container_name: win11-vpn
+    environment:
+      # VERSION: "core11"
+      RAM_SIZE: "8G"
+      CPU_CORES: "4"
+      GPU: "Y"
+    volumes:
+      # - ~/dev/envs/dockur/isos/tiny11-core-x64-beta-1.iso:/storage/custom.iso
+      - ~/dev/envs/dockur/win11-vpn:/storage
+    devices:
+      - /dev/kvm
+      - /dev/dri
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 40106:8006
+      - 40189:3389/tcp
+      - 40189:3389/udp
+    stop_grace_period: 2m
+    restart: on-failure

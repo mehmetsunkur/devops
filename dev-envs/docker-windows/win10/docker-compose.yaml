@@ -1,0 +1,21 @@
+version: "3"
+services:
+  windows:
+    image: dockurr/windows
+    container_name: win10-test1
+    environment:
+      VERSION: "win10"
+      RAM_SIZE: "8G"
+      CPU_CORES: "4"
+    volumes:
+      - ~/dev/envs/dockur/win10-test1:/storage
+    devices:
+      - /dev/kvm
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 30106:8006
+      - 30189:3389/tcp
+      - 30189:3389/udp
+    stop_grace_period: 2m
+    restart: on-failure

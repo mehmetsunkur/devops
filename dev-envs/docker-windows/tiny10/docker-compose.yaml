@@ -1,0 +1,22 @@
+version: "3"
+services:
+  windows:
+    image: dockurr/windows
+    container_name: tiny10-test1
+    environment:
+      # VERSION: "tiny10"
+      RAM_SIZE: "8G"
+      CPU_CORES: "4"
+    volumes:
+      - ~/dev/envs/dockur/isos/tiny10-x64-23h2.iso:/storage/custom.iso
+      - ~/dev/envs/dockur/tiny10-test1:/storage
+    devices:
+      - /dev/kvm
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 40206:8006
+      - 40289:3389/tcp
+      - 40289:3389/udp
+    stop_grace_period: 2m
+    restart: on-failure
