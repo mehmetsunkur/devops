@@ -1,0 +1,19 @@
+version: "3"
+services:
+  windows:
+    container_name: windows
+    image: dockurr/windows-arm
+    environment:
+      VERSION: "win11"
+      RAM_SIZE: "8G"
+      CPU_CORES: "4
+    devices:
+      - /dev/kvm
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 40306:8006
+      - 40389:3389/tcp
+      - 40389:3389/udp
+    stop_grace_period: 2m
+    restart: on-failure
