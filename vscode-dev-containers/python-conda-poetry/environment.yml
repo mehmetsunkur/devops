@@ -1,0 +1,17 @@
+name: miniconda-python
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - h5py
+  - jupyter
+  - poetry
+  - pip
+  - pip:
+    - seaborn
+    - matplotlib
+    - scikit-learn
+    - ipympl
+    - ipython
+    - graphviz

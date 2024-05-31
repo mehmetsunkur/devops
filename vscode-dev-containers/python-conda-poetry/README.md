@@ -1,0 +1,1 @@
+vscode devcontainer tempkate for python-conda-poetry projects
