@@ -7,3 +7,5 @@ build
 **/toolbox-id.txt
 **/toolbox-name.txt
 .idea
+target
+vscode-dev-containers/graal-polygot/helloworld/app/bin/main/org/example/App.class
